@@ -3,7 +3,7 @@
 
 bool Chess_Move_Rule(Chess chess,int rownow,int columnnow,int rowtogo,int columntogo){
     if(chess.change == 1){
-        switch(chess.kind){ //???�?�?�????�?�?移�??�????�??????��??�?
+        switch(chess.kind){ //這些升變後走法和金將一樣
             case Foot:
             case Car:
             case Horse:
@@ -19,9 +19,8 @@ bool Chess_Move_Rule(Chess chess,int rownow,int columnnow,int rowtogo,int column
     else {
         chessside = -1;
     }
-    //???�?�?走�??
     
-    switch(chess.kind){
+    switch(chess.kind){//各棋子規則
     case Foot://每次只可向前行1格，不能後退。
         if(columntogo == columnnow && rowtogo - rownow == 1*(chessside)){
             
@@ -120,7 +119,7 @@ bool Chess_Move_Rule(Chess chess,int rownow,int columnnow,int rowtogo,int column
 
 
 
-Chess Change_Rule(Chess chess,int rownow){//???�?�????
+Chess Change_Rule(Chess chess,int rownow){//待完成
     rownow = (chess.side == X )?(rownow):(10-rownow);
     if(chess.kind == King);
     else {
@@ -134,31 +133,31 @@ Chess Change_Rule(Chess chess,int rownow){//???�?�????
 }
 
 
-bool Relive_Rule(Chess chess,int rowrelive,int columnrelive ){//??��?��?��?????
-    if(BroadSeat[rowrelive][columnrelive].kind == Empty){ //該�??�???��?��??�?�?�????
+bool Relive_Rule(Chess chess,int rowrelive,int columnrelive ){//復活棋子 待完成
+    if(BroadSeat[rowrelive][columnrelive].kind == Empty){ 
         return 0;
     }
     rowrelive = (chess.side == X )?(rowrelive):(10-rowrelive);
-    //�?確�??該�????��??�??????�以??��?��????��??
-    if(chess.kind == Foot||chess.kind == Car){//???步�?��????????�?�????
+    //步兵跟香車跟桂馬不能放在最後面
+    if(chess.kind == Foot||chess.kind == Car){
         if(rowrelive == 9){
             return 0;
         }
     }
-    else if(chess.kind == Horse){//???�?馬�??
+    else if(chess.kind == Horse){
         if(rowrelive == 9,8){
             return 0;
         }
     }
 
-    //�?�?
+    //同一列不能有二兵
     if(chess.kind == Foot){
         for(int counter = 0;counter<=8;counter++){
             if(BroadSeat[counter][columnrelive].side == chess.side && BroadSeat[counter][columnrelive].kind == Foot){
                 return 0;
             }
         }
-        /*if(seat[rowrelive + side][columnrelive].kind == 'King'){ //????????��??步�?��????��?��?��??死�??
+        /*if(seat[rowrelive + side][columnrelive].kind == 'King'){ //兵不能將死王
             if(seat[rowrelive + side][columnrelive].kind)
         }*/
     }
