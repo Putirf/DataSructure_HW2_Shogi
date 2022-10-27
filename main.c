@@ -9,36 +9,23 @@ int Read_Old_Game();
 
 int main(int argc, char * argv[]){
     int ch;
-    
-    /*while(1){
-    Print_Start_UI();
-    set_disp_mode(0);
-    scanf("%d",&choose);*/
+
     while ((ch = getopt(argc, argv, "s:nl:")) != -1){
-        switch (ch) {//switch(choose){
-            
+        switch (ch) {
             case 's':
                 printf("%s",fNAME);
                 strcpy(fNAME,optarg);
                 printf("%s",fNAME);
                 break;
-
-            case 'n'://1://start a new game
+            case 'n':
                 Play_Chess();
                 printf("%s",fNAME);
                 break;
 
-            case 'l'://2:
+            case 'l':
                 strcpy(fNAME,optarg);
                 Read_Old_Game();
                 break;
-            /*case 0:
-            SHOW_CURSOR();
-            set_disp_mode(1);
-            PAUSE;
-            return 0;
-                break;*/
-            default:
             abort();
             break;
         }
@@ -54,12 +41,9 @@ int Read_Old_Game(){
     char fb[2];
     int forb;
     int fileend;
-    //char fNAME[50]; 
     CLEAR();
     SHOW_CURSOR();
     set_disp_mode(1);
-    /*printf("請輸入檔名:(.txt)");
-    scanf("%s",fNAME);*/
     fp = fopen(fNAME,"r");
     if(fp == NULL){
             printf("FILEOPENERROR1");
@@ -77,8 +61,7 @@ int Read_Old_Game(){
         printf("enter(f:forward b:backward 0:exit):");
         fflush(stdin);
         scanf("%s",fb);
-        if(strcmp(fb,"b")==0||strcmp(fb,"B")==0)/*switch(forb)*/{
-            //case n:
+        if(strcmp(fb,"b")==0||strcmp(fb,"B")==0){
             if(countstep == 0){
                 printf("this is the begining");
                 sleep(2);
@@ -102,9 +85,9 @@ int Read_Old_Game(){
                 }  
                 goto Option;
             }
-            //break;
+
         }
-        else if(strcmp(fb,"F")==0||strcmp(fb,"f")==0){    //case y:
+        else if(strcmp(fb,"F")==0||strcmp(fb,"f")==0){ 
                 Chess tmp;
                 if(feof(fp)){
                     printf("this is the last step of this game");
@@ -124,12 +107,12 @@ int Read_Old_Game(){
                 }  
                     goto Option;
                 }
-        }//break;
-        else if(strcmp(fb,"0")==0){//   case 0:
+        }
+        else if(strcmp(fb,"0")==0){
         fclose(fp);
                 return 0;
-        }//break;
-        else{//   default:
+        }
+        else{
             goto Option;
         }
     }
