@@ -20,7 +20,7 @@ ev_tstamp now;
 ev_tstamp clk1;
 ev_tstamp clk2;
 
-const Chess InitialBroad[9][9]= {
+const Chess InitialBroad[9][9]= {//初始化棋盤
     {{0,0,X,Car},{0,0,X,Horse},{0,0,X,Silver},{0,0,X,Gold},{0,0,X,King},{0,0,X,Gold},{0,0,X,Silver},{0,0,X,Horse},{0,0,X,Car},},
     {{0,0,NONE,Empty},{0,0,X,FlyingCar},{0,0,NONE,Empty},{0,0,NONE,Empty},{0,0,NONE,Empty},{0,0,NONE,Empty},{0,0,NONE,Empty},{0,0,X,Horn},{0,0,NONE,Empty},},
     {{0,0,X,Foot},{0,0,X,Foot},{0,0,X,Foot},{0,0,X,Foot},{0,0,X,Foot},{0,0,X,Foot},{0,0,X,Foot},{0,0,X,Foot},{0,0,X,Foot}},
@@ -33,7 +33,7 @@ const Chess InitialBroad[9][9]= {
     };;
 Chess BroadSeat[9][9];
 
-static void stdin_cb (EV_P_ ev_io *w, int revents)
+static void stdin_cb (EV_P_ ev_io *w, int revents)//透過timer重啟來執行遊戲
 {   
     MOVETO(13,0);
 	ev_timer_stop (loop, &timeout_watcher1);
@@ -65,9 +65,9 @@ static void stdin_cb (EV_P_ ev_io *w, int revents)
     }
 }
 
-static void timeout1_cb (EV_P_ ev_timer *w, int revents)
+static void timeout1_cb (EV_P_ ev_timer *w, int revents)//X的計時器
 {   
-    clk2 = ev_now(loop)-now-clk1;
+    clk2 = ev_now(loop)-now-clk1;//更新Y輸入時所耗費的時間
     MOVETO(1,11);
     SET_FRONT_COLOR(FRONT_BLUE);
 	printf("Time:%.0f \n",clk1);
@@ -80,9 +80,9 @@ static void timeout1_cb (EV_P_ ev_timer *w, int revents)
     
 }
 
-static void timeout2_cb (EV_P_ ev_timer *w, int revents)
+static void timeout2_cb (EV_P_ ev_timer *w, int revents)//Y的計時器
 {
-    clk1 = ev_now(loop)-now-clk2;
+    clk1 = ev_now(loop)-now-clk2;//更新X輸入時所耗費的時間
     MOVETO(1,11);
     SET_FRONT_COLOR(FRONT_BLUE);
 	printf("Time:%.0f \n",clk1);
@@ -279,7 +279,7 @@ int Enter_move(){ //Enter move and check does it follow the Chess_Move_Rule
     return 0;
 }
 
-bool Enter_Grave(int Grave[]){ //enter grave to relive chess
+bool Enter_Grave(int Grave[]){ //enter grave to relive chess 待完成
     int number = 0;
     GraveStart:
     printf("Which chess you want to relive?(please enter the number) :");
@@ -348,7 +348,7 @@ bool Enter_Grave(int Grave[]){ //enter grave to relive chess
 
 }
 
-int move(int save){
+int move(int save){//移動
         if(BroadSeat[Rowtogo][Columntogo].kind == Empty){
             if(side ==X){
                 GraveX[GraveXlast] = BroadSeat[Rowtogo][Columntogo].kind;
@@ -384,7 +384,7 @@ int move(int save){
     return 0;
 }
 
-int set_disp_mode(int option)  //0:Hide input 1:Show input
+int set_disp_mode(int option)  //0:Hide input 1:Show input顯示即隱藏游標
 {  
    int err;  
    int fd = STDIN_FILENO;
