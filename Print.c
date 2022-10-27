@@ -83,25 +83,3 @@ int Print_Broad(){
     set_disp_mode(1);
     return 0;
 }
-
-int Print_edge(){
-    HIDE_CURSOR();
-    set_disp_mode(0);
-    for(int counter = 0;counter <= BroadMaxX;counter++){
-        MOVETO(0,counter);
-        printf("█");
-        MOVETO(BroadMaxY,counter);
-        printf("█");
-    }
-
-    for(int counter = 0;counter <= BroadMaxY;counter++){
-        MOVETO(counter,0);
-        printf("██");
-        MOVETO(counter,BroadMaxX);
-        printf("██");
-    }
-    SHOW_CURSOR();
-    set_disp_mode(1);
-    return 0;
-}
-
