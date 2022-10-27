@@ -1,23 +1,6 @@
 #include "shogi.h"
 #include "Print.h"
 
-
-int Print_Start_UI(){
-    CLEAR();
-    HIDE_CURSOR();
-    Print_edge();
-    MOVETO(5,5);
-    printf("Open New Game (1)");
-    MOVETO(7,5);
-    printf("Review Old Game(2)");
-    MOVETO(9,5);
-    printf("Exit(0)");
-    SHOW_CURSOR();
-    set_disp_mode(1);
-    return 0;
-}
-
-
 int Print_Broad(){
     CLEAR();
     HIDE_CURSOR();
