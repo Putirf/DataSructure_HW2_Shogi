@@ -10,7 +10,7 @@ int Read_Old_Game();
 int main(int argc, char * argv[]){
     int ch;
 
-    while ((ch = getopt(argc, argv, "s:nl:")) != -1){
+    while ((ch = getopt(argc, argv, "s:nl:")) != -1){//判斷cmd的輸入
         switch (ch) {
             case 's':
                 strcpy(fNAME,optarg);
