@@ -20,8 +20,9 @@ typedef struct {
 }Chess;
 extern const Chess InitialBroad[9][9];
 extern Chess BroadSeat[9][9];
+extern char fNAME[50];
 
-//??Ｗ??閮剖??
+//螢幕設定
 #define CLEAR() printf("\033[2J")//清屏
 #define CLEARLINE() printf("\033[k")//清除从光标到行尾的内容
 #define MOVEUP(x) printf("\033[%dA", (x))// 光标上移n行
@@ -31,11 +32,11 @@ extern Chess BroadSeat[9][9];
 #define MOVETO(x,y) printf("\033[%d;%dH", (x), (y))// 设置光标位置（y行,x列）
 #define HIDE_CURSOR() printf("\033[?25l")// 隐藏光标
 #define SHOW_CURSOR() printf("\033[?25h")// 显示光标
-//閮剖??憿????
+//設定背景及字體顏色
 #define SET_FRONT_COLOR(color) printf("\033[%dm",(color))
 #define SET_BACKGROUND_COLOR(color) printf("\033[%dm",(color))
 
-//?????航??
+//字體顏色
 #define FRONT_BLACK 30
 #define FRONT_RED 31
 #define FRONT_GREEN 32
@@ -45,7 +46,7 @@ extern Chess BroadSeat[9][9];
 #define FRONT_DEEP_GREEN 36
 #define FRONT_WHITE 37
 
-//?????航??
+//背景顏色
 #define BACKGROUND_BLACK 40
 #define BACKGROUND_RED 41
 #define BACKGROUND_GREEN 42
@@ -63,7 +64,7 @@ extern Chess BroadSeat[9][9];
 #define BroadMaxX 40
 #define BroadMaxY 40
 
-//撘瑕?嗅????亥????? char -> int
+//棋子
 #define Foot        1953460038  //步兵
 #define Car         7496003     //香車
 #define Horse       1936879432  //桂馬
