@@ -13,13 +13,10 @@ int main(int argc, char * argv[]){
     while ((ch = getopt(argc, argv, "s:nl:")) != -1){
         switch (ch) {
             case 's':
-                printf("%s",fNAME);
                 strcpy(fNAME,optarg);
-                printf("%s",fNAME);
                 break;
             case 'n':
                 Play_Chess();
-                printf("%s",fNAME);
                 break;
 
             case 'l':
