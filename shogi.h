@@ -11,6 +11,7 @@
 #include <string.h>
 #include <ev.h>
 #include <sys/io.h>
+#include <ctype.h>
 
 typedef struct {
     bool alivechange ;//0 die/ 1 alive
