@@ -2,33 +2,48 @@
 #include "Print.h"
 #include "Play.h"
 #include "Rule.h"
-
+char fNAME[50] = "GAME.txt";
 
 int choose;
 int Read_Old_Game();
 
-int main(){
-    while(1){
+int main(int argc, char * argv[]){
+    int ch;
+    
+    /*while(1){
     Print_Start_UI();
     set_disp_mode(0);
-    scanf("%d",&choose);
-    switch(choose){
-        case 1://start a new game
-            Play_Chess();
+    scanf("%d",&choose);*/
+    while ((ch = getopt(argc, argv, "s:nl:")) != -1){
+        switch (ch) {//switch(choose){
+            
+            case 's':
+                printf("%s",fNAME);
+                strcpy(fNAME,optarg);
+                printf("%s",fNAME);
+                break;
+
+            case 'n'://1://start a new game
+                Play_Chess();
+                printf("%s",fNAME);
+                break;
+
+            case 'l'://2:
+                strcpy(fNAME,optarg);
+                Read_Old_Game();
+                break;
+            /*case 0:
+            SHOW_CURSOR();
+            set_disp_mode(1);
+            PAUSE;
+            return 0;
+                break;*/
+            default:
+            abort();
             break;
-        case 2:
-            Read_Old_Game();
-            break;
-        case 0:
-        SHOW_CURSOR();
-        set_disp_mode(1);
-        PAUSE;
-        return 0;
-            break;
-        default:
-        break;
         }
     }
+    
     return 0;        
 }
 
@@ -39,12 +54,12 @@ int Read_Old_Game(){
     char fb[2];
     int forb;
     int fileend;
-    char fNAME[50]; 
+    //char fNAME[50]; 
     CLEAR();
     SHOW_CURSOR();
     set_disp_mode(1);
-    printf("請輸入檔名:(.txt)");
-    scanf("%s",fNAME);
+    /*printf("請輸入檔名:(.txt)");
+    scanf("%s",fNAME);*/
     fp = fopen(fNAME,"r");
     if(fp == NULL){
             printf("FILEOPENERROR1");
