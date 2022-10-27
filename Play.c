@@ -36,7 +36,6 @@ Chess BroadSeat[9][9];
 static void stdin_cb (EV_P_ ev_io *w, int revents)
 {   
     MOVETO(13,0);
-    //printf("Now is %c turns.",(side == X)?('X'):('Y'));
 	ev_timer_stop (loop, &timeout_watcher1);
     ev_timer_stop (loop, &timeout_watcher2);
     Enter_move();
@@ -74,8 +73,9 @@ static void timeout1_cb (EV_P_ ev_timer *w, int revents)
 	printf("Time:%.0f \n",clk1);
     MOVETO(12,11);
     SET_FRONT_COLOR(FRONT_RED);
-	printf("Time:%.0f \n",clk2); /*印出計時 總計時與個別計時*/
+	printf("Time:%.0f \n",clk2); 
 	clk1 = clk1 +1;
+    SET_FRONT_COLOR(FRONT_WHITE);
     printf("Now is %c turns.(-1:surrander  0:regret)\n",(side == X)?('X'):('Y'));
     
 }
@@ -88,7 +88,9 @@ static void timeout2_cb (EV_P_ ev_timer *w, int revents)
 	printf("Time:%.0f \n",clk1);
     MOVETO(12,11);
     MOVETO(12,11);SET_FRONT_COLOR(FRONT_RED);
-	printf("Time:%.0f \n",clk2); //印出計時 總計時與個別計時
+	printf("Time:%.0f \n",clk2);
+    clk2 = clk2 +1;
+    SET_FRONT_COLOR(FRONT_WHITE);
     printf("Now is %c turns.(-1:surrander  0:regret)\n",(side == X)?('X'):('Y'));
 }
 
@@ -105,7 +107,7 @@ int Play_Chess(){
         }
     }
     Save = 1;
-    fp = fopen("GAME.txt","w");
+    fp = fopen(fNAME,"w");
     fclose(fp);
     Print_Broad();
  
@@ -129,30 +131,8 @@ int Play_Chess(){
 
     Save = 0;
     printf("Player%c win\n",side);
+    sleep(2);
     Save = 0;
-    Savegame:
-    printf("Do you want to save this game?[y/n]");
-    scanf("%s",YN);
-    if(strcmp(YN,"Y")==0||strcmp(YN,"y")==0){
-        char fNAME[50]; 
-        printf("請輸入檔名:(.txt)");
-        scanf("%s",fNAME);
-        FILE *inf = fopen(fNAME,"w");
-        fp = fopen("GAME.txt","r");
-        int tmp;
-        while(!feof(fp)){
-            fscanf(fp,"%d ",&tmp);
-            fprintf(inf,"%d ",tmp);
-        }
-        fclose(fp);
-        fclose(inf);
-    }
-    else if(strcmp(YN,"N")==0||strcmp(YN,"n")==0){
-        return 0;
-    }
-    else{
-        goto Savegame;
-    }
     return 0;
 }
 
@@ -172,7 +152,7 @@ int Enter_move(){ //Enter move and check does it follow the Chess_Move_Rule
         }
         else{
             Chess tmp;
-            fp = fopen("GAME.txt","r");
+            fp = fopen(fNAME,"r");
             if(fp == NULL){
                  printf("FILEOPENERROR1");
             }
@@ -383,7 +363,7 @@ int move(int save){
             Gamecontinue = 0;
         }
         if(save ==1){
-            fp = fopen("GAME.txt","r+");
+            fp = fopen(fNAME,"r+");
             if(fp == NULL){
                 printf("OPENFILEERROR2");
                 sleep;
