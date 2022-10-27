@@ -64,17 +64,17 @@ extern Chess BroadSeat[9][9];
 #define BroadMaxY 40
 
 //撘瑕?嗅????亥????? char -> int
-#define Foot        1953460038  //甇亙??
-#define Car         7496003     //擐?頠?
-#define Horse       1936879432  //獢?擐?
-#define Silver      1986816339  //???撠?
-#define Gold        1684827975  //???撠?
-#define King        1735289163  //???撠?
-#define Horn        1852993352  //閫?敶?
-#define DragonHorse 1734439492  //樴?擐?
-#define FlyingCar   1769565254  //憌?頠?
-#define DragonKing   1869046084  //樴????
-#define Empty       -1442840544 //蝛箸??
+#define Foot        1953460038  //步兵
+#define Car         7496003     //香車
+#define Horse       1936879432  //桂馬
+#define Silver      1986816339  //銀將
+#define Gold        1684827975  //金將
+#define King        1735289163  //國王
+#define Horn        1852993352  //角形
+#define DragonHorse 1734439492  //龍馬
+#define FlyingCar   1769565254  //飛車
+#define DragonKing   1869046084  //龍王
+#define Empty       -1442840544 //空
 
 #define NONE    1162760014
 #define X   -973078440
